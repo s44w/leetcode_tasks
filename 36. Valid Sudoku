@@ -1,0 +1,34 @@
+import collections
+class Solution:
+    '''
+    def isValidSudoku(self, board):
+        all_rows = collections.defaultdict(set)
+        all_columns = collections.defaultdict(set)
+        all_squares = collections.defaultdict(set)
+
+        for row in range(9):
+            for column in range(9):
+                number = board[row][column]
+
+                if number == '.':
+                    continue
+                if (number in all_columns[column] or
+                number in all_rows[row] or
+                number in all_squares[row]):
+                    return False
+
+                all_columns[column].add(number)
+                all_rows[row].add(number)
+                all_squares[row].add(number)
+        return True
+        '''
+
+    def isValidSudoku(self, board):
+        answer = []
+        for y in range(9):
+            for x in range(9):
+                number = board[y][x]
+                if number=='.':
+                    continue
+                answer+=[(x, number), (number, y), (x//3, y//3, number)]
+        return len(answer)==len(set(answer))
