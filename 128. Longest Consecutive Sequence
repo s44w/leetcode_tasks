@@ -1,0 +1,32 @@
+import collections
+class Solution:
+    #faster way is counting visited numbers
+    def longestConsecutive(self, nums):
+        numSet = set(nums)
+        maxLength = 0
+        visitedNums = collections.defaultdict(bool)
+
+        for number in nums:
+            if (number-1) not in numSet:
+                curLength = 0
+
+                while ((number + curLength) in numSet):
+                    if visitedNums[number+curLength]:
+                        break
+                    visitedNums[number+curLength]=True
+                    curLength+=1
+                maxLength = max(maxLength, curLength)
+
+        return maxLength
+    '''
+    def longestConsecutive(self, nums):
+        numSet = set(nums)
+        maxLength = 0
+        for number in nums:
+            if (number - 1) not in numSet:
+                curLength = 0
+                while (number + curLength in numSet):
+                    curLength+=1
+                maxLength = max(maxLength, curLength)
+        return maxLength
+    '''
