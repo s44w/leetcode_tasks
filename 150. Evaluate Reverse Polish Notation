@@ -1,0 +1,25 @@
+class Solution:
+    def evalRPN(self, tokens):
+        numsStack = []
+
+        for token in tokens:
+            match(token):
+                case '+':
+                    x = numsStack.pop()
+                    y = numsStack.pop()
+                    numsStack.append(y+x)
+                case '-':
+                    x = numsStack.pop()
+                    y = numsStack.pop()
+                    numsStack.append(y-x)
+                case '*':
+                    x = numsStack.pop()
+                    y = numsStack.pop()
+                    numsStack.append(y*x)
+                case '/':
+                    x = numsStack.pop()
+                    y = numsStack.pop()
+                    numsStack.append(int(y/x))
+                case _:
+                    numsStack.append(int(token))
+        return numsStack.pop()
