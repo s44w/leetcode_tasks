@@ -1,0 +1,12 @@
+class Solution:
+    def dailyTemperatures(self, temperatures):
+        n = len(temperatures)
+        ans = [0]*n
+        prevNumIndexStack = []
+        for idx, temp in enumerate(temperatures):
+            while prevNumIndexStack and prevNumIndexStack[-1][1]<temp:
+                prevIdx, _ = prevNumIndexStack.pop()
+                ans[prevIdx] = idx - prevIdx
+
+            prevNumIndexStack.append([idx, temp])
+        return ans
