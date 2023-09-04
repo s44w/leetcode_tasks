@@ -1,0 +1,24 @@
+class Solution:
+    def recursiveSolution(self, n, curOpenCount, curCloseCount,
+                          curCombinationString, allCombinationsArr):
+        if len(curCombinationString)==n*2:
+            allCombinationsArr.append(curCombinationString)
+            return
+        
+        elif curOpenCount==n:
+            return self.recursiveSolution(n, curOpenCount+1, curCloseCount,
+                                          curCombinationString+')', allCombinationsArr)
+
+        elif curOpenCount<n:
+            self.recursiveSolution(n, curOpenCount+1, curCloseCount,
+                                   curCombinationString+'(', allCombinationsArr)
+
+        if curCloseCount<curOpenCount:
+            self.recursiveSolution(n, curOpenCount, curCloseCount+1,
+                                   curCombinationString+')', allCombinationsArr)
+            return
+
+    def generateParenthesis(self, n):
+        ans = []
+        self.recursiveSolution(n, 0,0,'',ans)
+        return ans
