@@ -1,0 +1,15 @@
+class Solution:
+    def twoSum(self, numbers, target):
+        leftPtr = 0
+        rightPtr = 1
+
+        curSum=numbers[leftPtr]+numbers[rightPtr]
+        n = len(numbers)
+        while rightPtr<n and curSum!=target:
+            if curSum<target:
+                leftPtr+=1
+                rightPtr+=1
+            else:
+                leftPtr-=1
+            curSum=numbers[leftPtr]+numbers[rightPtr]
+        return [leftPtr+1, rightPtr+1]
